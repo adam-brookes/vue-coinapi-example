@@ -1,0 +1,18 @@
+
+// Imports SASS tools that are provides by Vue Material, this allows us to 
+// use the md-register-theme mixin.
+@import "~vue-material/dist/theme/engine";
+
+// Call the mixin so that we can register our theme, this includes specifiying
+// the colours we want to use.
+@include md-register-theme("default", (
+        primary: md-get-palette-color(blue, A200),
+        accent: #3fffbe,
+        warn: #f0ad4e,
+));
+
+// This applies the theme,
+@import "~vue-material/dist/theme/all"; 
+
+// This is loading all of the material icons that google provides.
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
