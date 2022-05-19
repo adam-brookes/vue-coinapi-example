@@ -12,20 +12,24 @@
         <md-table-cell md-label="Gender">{{ item.gender }}</md-table-cell>
         <md-table-cell md-label="Job Title">{{ item.title }}</md-table-cell>
       </md-table-row>
-
-      <md-table-pagination
-          :md-page-size="2"
-          :md-page-options="[1,2,3,4,5,6]"
-          :md-update="updatePagination"
-          :md-data="users"
-          :md-paginated-data.sync="paginatedUsers" />
     </md-table>
+
+    <table-paging
+        :md-page-size="20"
+        :md-page-options="[1,2,3,4,5,6, 20]"
+        :md-update="updatePagination"
+        :md-data="users"
+        :md-paginated-data.sync="paginatedUsers"></table-paging>
+
   </div>
 </template>
 
 <script>
+import TablePaging from "@/components/TablePaging";
+
 export default {
   name: 'TablePagination',
+  components: {TablePaging},
   data: () => ({
     users: [
       {
@@ -63,12 +67,42 @@ export default {
         gender: "Male",
         title: "Software Test Engineer III"
       },
+      {
+        id: 7,
+        name: "Thatcher Stave",
+        email: "tstave4@reference.com",
+        gender: "Male",
+        title: "Software Test Engineer III"
+      },
+      {
+        id: 8,
+        name: "Thatcher Stave",
+        email: "tstave4@reference.com",
+        gender: "Male",
+        title: "Software Test Engineer III"
+      },
+      {
+        id: 9,
+        name: "Thatcher Stave",
+        email: "tstave4@reference.com",
+        gender: "Male",
+        title: "Software Test Engineer III"
+      },
+      {
+        id: 10,
+        name: "Thatcher Stave",
+        email: "tstave4@reference.com",
+        gender: "Male",
+        title: "Software Test Engineer III"
+      },
     ],
     paginatedUsers: [],
   }),
   methods: {
-    updatePagination (page, pageSize, sort, sortOrder) {
-      console.log('pagination has updated', page, pageSize, sort, sortOrder);
+    updatePagination (page, pageSize) {
+      debugger;
+      
+      console.log('pagination has updated', page, pageSize);
     }
   },
 }
