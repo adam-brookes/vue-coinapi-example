@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <table-pagination></table-pagination>
       <crypto-selection-dialog :show-dialog="showDialog" :assets="assets"></crypto-selection-dialog>
       <md-button @click="showDialog = !showDialog">Show Dialog</md-button>
       <div v-if="loading && assets.length">
@@ -67,7 +66,6 @@ import Vue from "vue";
 import CoinApiClient from "@/coin-api/coin-api-client";
 import { Asset } from "@/coin-api/coin-api-models";
 import CryptoSelectionDialog from "@/components/CryptoSelectionDialog.vue";
-import TablePagination from "@/components/TablePagination.vue";
 
 interface ConfigureCyptoModel {
   client: CoinApiClient;
@@ -83,7 +81,7 @@ export default Vue.extend({
   name: "ConfigureCyptoView",
   data(): ConfigureCyptoModel {
     return {
-      client: new CoinApiClient("F0D169E0-F382-437E-9FBF-C69C474EFACD"),
+      client: new CoinApiClient("F0D169E0-F382-437E-9FBF-C69C474EFACD", true),
       assets: [],
       selectedAsset: null,
       loading: true,
@@ -92,15 +90,15 @@ export default Vue.extend({
       showDialog: false
     };
   },
-  components: {CryptoSelectionDialog, TablePagination},
+  components: {CryptoSelectionDialog},
   mounted() {
     
     this.loading = false;
-    // this.client.listAssets().then((result: Array<Asset>) => {
-    //   this.assets = result;
-    //   this.searched = this.assets;
-    //   this.loading = false;
-    // });
+    this.client.listAssets().then((result: Array<Asset>) => {
+      this.assets = result;
+      this.searched = this.assets;
+      this.loading = false;
+    });
   },
   methods: {
     searchOnTable() {

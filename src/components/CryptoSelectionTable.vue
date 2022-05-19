@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    <md-table v-model="searchedAssets" md-card md-fixed-header
+  <div v-if="searchedAssets.length" class="hello">
+    <md-table v-model="paginatedAssets" md-card md-fixed-header
               @md-selected="onSelect">
       <md-table-toolbar>
         <div class="md-toolbar-section-start">
@@ -25,21 +25,30 @@
         <!--          <md-table-cell md-label="Job Title" md-sort-by="title">{{ item.title }}</md-table-cell>-->
       </md-table-row>
     </md-table>
+    <table-paging
+        :md-page-size="20"
+        :md-page-options="[20, 30, 40, 50]"
+        :md-update="updatePagination"
+        :md-data="searchedAssets"
+        :md-paginated-data.sync="paginatedAssets"></table-paging>
   </div>
 </template>
 
 <script lang="ts">
 import Vue, {PropType} from 'vue';
 import {Asset} from "@/coin-api/coin-api-models";
+import TablePaging from "@/components/TablePaging.vue"
 
 interface CryptoSelectionTableModel {
   searchedAssets: Array<Asset>,
+  paginatedAssets: Array<Asset>
   searchTerm: string;
   selectedAsset: Asset;
 }
 
 export default Vue.extend({
   name: 'CryptoSelectionTable',
+  components: {TablePaging},
   props: {
     assets: Array as PropType<Asset[]>,
     selection: Object as PropType<Asset | null>
@@ -48,7 +57,8 @@ export default Vue.extend({
     return {
       searchedAssets: [],
       searchTerm: "",
-      selectedAsset: null
+      selectedAsset: null,
+      paginatedAssets: []
     }
   },
   created() {
@@ -66,6 +76,11 @@ export default Vue.extend({
     },
     onSelect(item: Asset) {
       this.selectedAsset = item;
+    },
+    updatePagination (page, pageSize, sort, sortOrder) {
+      debugger;
+
+      console.log('pagination has updated', page, pageSize, sort, sortOrder);
     }
   }
 });
