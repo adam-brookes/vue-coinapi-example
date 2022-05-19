@@ -8,6 +8,7 @@ export interface Exchange {
 export interface Asset {
     asset_id: string
     name: string
+    price_usd: number;
     type_is_crypto: boolean
     volume_1day_usd: number;
     volume_1hrs_usd: number;
