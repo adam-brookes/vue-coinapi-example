@@ -26,9 +26,9 @@ export interface CyptoSymbol extends SymbolBase {
     asset_id_quote: string
 }
 
-export interface Spot extends Symbol {
-
-}
+// export interface Spot extends Symbol {
+//
+// }
 
 export interface Future {
     future_delivery_time: Date

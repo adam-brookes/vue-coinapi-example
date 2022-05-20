@@ -10,8 +10,29 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import '@/main.scss';
 
+import { createPinia, PiniaVuePlugin } from 'pinia'
+
+Vue.use(PiniaVuePlugin)
+const pinia = createPinia()
+
 import Vuelidate from '@vuelidate/core';
 Vue.use(Vuelidate)
+//
+// const date = new Date(value)
+// return date.toLocaleDateString(['en-US'], {month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'})
+
+Vue.filter('date', function(value)  {
+  debugger;
+  let date: Date = null;
+   if(!(value instanceof Date)) {
+     date = new Date(value);
+   }
+   else {
+     date = value;
+   }
+
+  return date.toLocaleDateString(['en-US'], {month: 'short', day: '2-digit', year: 'numeric'});
+});
 
 Vue.filter('toCurrency', function (value) {
   if (typeof value !== "number") {
@@ -29,4 +50,5 @@ Vue.use(VueMaterial)
 new Vue({
   router,
   render: h => h(App),
+  pinia
 }).$mount('#app')
