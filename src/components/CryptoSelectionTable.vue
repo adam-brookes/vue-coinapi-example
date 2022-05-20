@@ -76,10 +76,9 @@ export default Vue.extend({
     },
     onSelect(item: Asset) {
       this.selectedAsset = item;
+      this.$emit('crypto-selected', item);
     },
     updatePagination (page, pageSize, sort, sortOrder) {
-      debugger;
-
       console.log('pagination has updated', page, pageSize, sort, sortOrder);
     }
   }
@@ -87,6 +86,12 @@ export default Vue.extend({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
+<style lang="scss">
+.md-selected-single {
+  background-color: #448aff !important;
+  color: white;
+}
+.selected {
+  
+}
 </style>

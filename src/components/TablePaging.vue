@@ -77,7 +77,6 @@ export default {
     mdData: {
       immediate: true,
       handler (mdData) {
-        debugger;
         this.mdData = mdData
         this.updatePage()
       }
@@ -103,7 +102,6 @@ export default {
       return Math.ceil(this.mdCount / this.currentPageSize);
     },
     setPage (mdPage, mdCount) {
-      debugger;
       this.mdPage = mdCount > 0 ? (mdPage > 0 ? mdPage : (this.mdPage > 0 ? this.mdPage : 1)) : 0
       var pageCount = this.getPageCount()
       if (this.mdPage > pageCount) {

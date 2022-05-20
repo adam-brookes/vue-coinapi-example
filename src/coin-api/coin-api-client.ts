@@ -49,7 +49,6 @@ export default class CoinApiClient {
         let path = this.apiAddress + "/assets";
 
         if(this.useLocalJson) {
-            debugger;
             path =  `${window.location.origin}/json/assets.json`;
         }
         

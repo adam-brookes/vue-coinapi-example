@@ -10,6 +10,9 @@ import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import '@/main.scss';
 
+import Vuelidate from '@vuelidate/core';
+Vue.use(Vuelidate)
+
 Vue.filter('toCurrency', function (value) {
   if (typeof value !== "number") {
     return value;
@@ -25,5 +28,5 @@ Vue.use(VueMaterial)
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')
