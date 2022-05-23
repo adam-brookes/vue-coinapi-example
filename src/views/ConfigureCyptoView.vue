@@ -23,6 +23,7 @@
         <md-table-cell md-label="Quantity">{{ item.quantity }}</md-table-cell>
         <md-table-cell md-label="Price Brought ($)">${{ item.priceBought | toCurrency }}</md-table-cell>
         <md-table-cell md-label="Date Bought">{{ item.dateBought | date }}</md-table-cell>
+        <md-table-cell md-label="Bought Value">{{ item.dateBought | date }}</md-table-cell>
         <md-table-cell md-label="Actions"> 
           <md-button @click="editItem(item)" class="md-fab md-mini md-primary">
             <md-icon>edit</md-icon>
@@ -55,7 +56,7 @@ export default Vue.extend({
   name: "ConfigureCyptoView",
   data(): ConfigureCryptoModel {
     return {
-      client: new CoinApiClient("F0D169E0-F382-437E-9FBF-C69C474EFACD", true),
+      client: new CoinApiClient( true),
       editingAsset: null,
       assets: [],
       loading: true,

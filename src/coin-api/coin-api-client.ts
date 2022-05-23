@@ -3,19 +3,18 @@ import { Asset, Exchange, CyptoSymbol } from "@/coin-api/coin-api-models";
 
 export default class CoinApiClient {
 
-    private readonly apiKey: string;
+    // Change the key here depending on your 
+    private readonly apiKey = "F0D169E0-F382-437E-9FBF-C69C474EFACD";
     private readonly useLocalJson: boolean;
 
     private readonly authenticationHeader = {
-        "X-CoinAPI-Key": ""
+        "X-CoinAPI-Key": this.apiKey
     };
 
     private readonly apiAddress = "https://rest.coinapi.io/v1";
 
-    constructor(apiKey: string, useLocalJson: boolean ) {
-        this.apiKey = apiKey;
+    constructor(useLocalJson: boolean) {
         this.useLocalJson = useLocalJson;
-        this.authenticationHeader["X-CoinAPI-Key"] = this.apiKey;
     }
 
     listExchanges(): Promise<Exchange[]> {

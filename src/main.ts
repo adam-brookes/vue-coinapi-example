@@ -9,20 +9,23 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 import '@/main.scss';
+import '@/material-dashboard.scss';
+
 
 import { createPinia, PiniaVuePlugin } from 'pinia'
+
+import Chartist from "chartist";
+
+
+Vue.prototype.$Chartist = Chartist;
 
 Vue.use(PiniaVuePlugin)
 const pinia = createPinia()
 
 import Vuelidate from '@vuelidate/core';
 Vue.use(Vuelidate)
-//
-// const date = new Date(value)
-// return date.toLocaleDateString(['en-US'], {month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'})
 
 Vue.filter('date', function(value)  {
-  debugger;
   let date: Date = null;
    if(!(value instanceof Date)) {
      date = new Date(value);
@@ -31,7 +34,8 @@ Vue.filter('date', function(value)  {
      date = value;
    }
 
-  return date.toLocaleDateString(['en-US'], {month: 'short', day: '2-digit', year: 'numeric'});
+  return date.toLocaleDateString(['en-US'], 
+      { month: 'short', day: '2-digit', year: 'numeric'});
 });
 
 Vue.filter('toCurrency', function (value) {
